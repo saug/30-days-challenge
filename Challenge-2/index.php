@@ -82,17 +82,18 @@
 			 	// FOR MINUTES
 			 	const min = now.getMinutes();
 			 	// console.log("min:"+min);
-			 	const minDegrees = ((min / 60) * 360) + 90;
+			 	const minDegrees = ((min / 60) * 360) + ((seconds/60)*6) + 90;
 			 	minHand.style.transform = `rotate(${minDegrees}deg)`;
 
 			 	// FOR HOURS
 			 	const hour = now.getHours();
 			 	// console.log("hour:"+hour);
-			 	const hourDegrees = ((hour / 60) * 360) + 90;
-			 	secondHand.style.transform = `rotate(${hourDegrees}deg)`;
+			 	const hourDegrees = ((hour / 12) * 360) + ((min/60)*30) + 90;
+			 	hourHand.style.transform = `rotate(${hourDegrees}deg)`;
 
-			 }
-			 setInterval(setDate, 1000);
+			}
+			setInterval(setDate, 1000);
+  			setDate();
 
 		</script>
 	</footer>
