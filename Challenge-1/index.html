@@ -65,10 +65,25 @@
 			 	-currentTime-Sets or returns the current playback position in the audio/video (in seconds)
 			*/
 			const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+			const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
 			if(!audio) return;
 			audio.currentTime = 0; // resets the audio playback time to zero. This was done so that there is no delay in sound whenever one key is pressed over and over.
 			audio.play();
+			key.classList.add('playing');//classList.add same as addClass. It is used in vanilla javascript.
+			/*
+				SIMILAR FUNCTIONS FOR VANILLA JAVASCRIPT
+			 	key.classList.remove('playing');
+				key.classList.toggle('playing');
+			*/
 		});
+
+		function removeTransition(e){
+			console.log(e);
+
+		}
+
+		const keys = document.querySelectorAll('.key');
+		keys.forEach(key => key.addEventListener('transitionend',removeTransition));
 	</script>
 </body>
 </html>
