@@ -56,10 +56,6 @@
 	<audio data-key="76" src="sounds/tink.wav"></audio>
 
 	<script type="text/javascript">
-		const keys = document.querySelectorAll('.key');
-		keys.forEach(key => key.addEventListener('transitionend', removeTransition));
-		window.addEventListener("keydown",playingSound);
-
 
 		function playingSound(e){
 			/* 
@@ -74,6 +70,7 @@
 			if(!audio) return;
 			key.classList.add('playing');//classList.add same as addClass. It is used in vanilla javascript.
 			audio.currentTime = 0; // resets the audio playback time to zero. This was done so that there is no delay in sound whenever one key is pressed over and over.
+			audio.volume = 0.5;
 			audio.play();
 			/*
 				SIMILAR FUNCTIONS FOR VANILLA JAVASCRIPT
@@ -83,10 +80,15 @@
 		}
 
 		function removeTransition(e){
-			if(e.propertyName !== 'tranform') return; //skip if not transition
+			console.log("test");
+			if(e.propertyName != 'transform') return; //skip if not transition
+			// console.log(e);
 			e.target.classList.remove('playing');
 		}
 
+		const keys = document.querySelectorAll('.key');
+		keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+		window.addEventListener("keydown",playingSound);
 		
 	</script>
 </body>
